@@ -19,9 +19,13 @@ query = st.text_input("Enter your query:")
 # Load or compute query embedding (Placeholder: Replace with actual embedding model)
 def get_query_embedding(query):
     return np.random.rand(embeddings.shape[1])  # Replace with actual embedding function
+
+k = st.slider("Select number of results:", 1, 20, 10)
+
 if st.button("Search"):
     query_embedding = get_query_embedding(query)
-    results = retrieve_top_k(query_embedding, embeddings)
+    results = retrieve_top_k(query_embedding, embeddings, k)
+
 # Display results
     st.write("### Top 10 Relevant Documents:")
     for doc, score in results:
